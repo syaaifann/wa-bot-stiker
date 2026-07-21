@@ -30,3 +30,57 @@ Buka terminal/CMD, buat folder baru, lalu jalankan inisialisasi Node.js:
 mkdir wa-bot
 cd wa-bot
 npm init -y
+```
+
+### 2. Install Dependency / Library
+Install modul utama yang dibutuhkan untuk menjalankan bot dan mengolah stiker:
+```bash
+npm install @whiskeysockets/baileys wa-sticker-formatter qrcode-terminal pino @hapi/boom
+```
+
+### 3. Buat File Utama (`index.js`)
+Buat file `index.js` di dalam folder proyek, lalu masukkan kode integrasi Baileys dan `wa-sticker-formatter`.
+
+### 4. Jalankan Bot
+Eksekusi perintah berikut untuk memuat bot:
+```bash
+node index.js
+```
+
+---
+
+## 📲 Cara Penggunaan Bot
+
+1. Setelah menjalankan `node index.js`, **QR Code** akan muncul di terminal CMD.
+2. Buka aplikasi **WhatsApp** di HP $\rightarrow$ **Perangkat Tertaut (Linked Devices)** $\rightarrow$ **Tautkan Perangkat**.
+3. Scan QR Code yang ada di terminal.
+4. Setelah status koneksi menjadi **`open`**, kirim foto di obrolan WA dengan *caption*:
+   ```text
+   .stiker
+   ```
+5. Bot akan memproses dan membalas gambar tersebut dalam bentuk stiker! 🎉
+
+---
+
+## 📂 Struktur Folder Proyek
+
+```text
+wa-bot/
+├── auth_info_baileys/  # Sesi login WA (Otomatis dibuat, JANGAN di-upload ke GitHub)
+├── node_modules/       # Modul dependensi Node.js
+├── index.js            # Kode logika utama bot
+├── package.json        # Manifest proyek & daftar library
+└── README.md           # Dokumentasi proyek
+```
+
+---
+
+## 🔐 Catatan Keamanan
+
+> **PENTING:** Jangan pernah mengunggah folder `auth_info_baileys/` atau folder sesi login ke repositori publik. Folder tersebut berisi token akses akun WhatsApp kamu. Pastikan untuk memasukkan folder tersebut ke dalam `.gitignore`.
+
+---
+
+## 👤 Pembuat
+
+* **Ifan** - [*Repository Author*](https://github.com/syaaifann)
