@@ -1,86 +1,86 @@
-# 🤖 WhatsApp Sticker Bot (Baileys)
+# 🤖 WhatsApp Sticker Bot (Baileys Multi-Platform)
 
-Bot WhatsApp sederhana, kencang, dan ringan yang dibuat menggunakan Node.js dan library `@whiskeysockets/baileys`. Bot ini berfungsi untuk mengubah gambar yang dikirim pengguna menjadi stiker WhatsApp secara otomatis.
-
----
-
-## 📸 Fitur Utama
-
-* **.stiker / !stiker**: Mengubah foto yang dikirim (dengan *caption*) menjadi stiker WhatsApp.
-* **ping**: Cek status keaktifan bot secara cepat.
-* **Direct Socket Stream**: Tanpa Puppeteer / Chrome, hemat RAM, dan proses pemuatan stiker super cepat.
+Bot WhatsApp sederhana, kencang, dan ringan yang dibangun menggunakan Node.js dan library `@whiskeysockets/baileys`. Repositori ini menyediakan 2 versi skrip yang siap pakai sesuai kebutuhan perangkatmu: **Desktop (PC/Laptop)** dan **Android (Termux)**.
 
 ---
 
-## 🛠️ Prasyarat (Prerequisites)
+## 🚀 Fitur Utama
 
-Sebelum menjalankan bot ini, pastikan komputer kamu sudah terpasang:
-* [Node.js](https://nodejs.org/) (Versi 18 ke atas disarankan)
-* [Git](https://git-scm.com/) (Opsional, untuk *clone* repositori)
+* **.stiker / !stiker**: Mengubah gambar menjadi stiker WhatsApp secara otomatis.
+* **ping**: Cek status responsivitas bot.
+* **Versi Desktop**: Login menggunakan QR Code di terminal.
+* **Versi Termux Android**: Login tanpa QR Code (menggunakan **Pairing Code / Kode Verifikasi 8 Digit**) & tanpa masalah kompilasi `sharp` (menggunakan Native FFmpeg).
 
 ---
 
-## 🚀 Cara Membuat & Menginstal dari Nol
+## 💻 Cara Install & Jalankan
 
-Jika kamu ingin membuat bot ini dari awal di komputer lokal, ikuti langkah-langkah berikut:
+Pilih panduan instalasi sesuai dengan perangkat yang kamu gunakan:
 
-### 1. Inisialisasi Proyek
-Buka terminal/CMD, buat folder baru, lalu jalankan inisialisasi Node.js:
+### 📱 1. Versi Android (Termux)
+
+Cocok buat kamu yang ingin menjalankan bot 24 jam langsung dari HP Android tanpa laptop.
+
 ```bash
-mkdir wa-bot
-cd wa-bot
-npm init -y
-```
+# Update & install dependensi sistem
+pkg update && pkg upgrade -y
+pkg install nodejs-lts git ffmpeg -y
 
-### 2. Install Dependency / Library
-Install modul utama yang dibutuhkan untuk menjalankan bot dan mengolah stiker:
-```bash
-npm install @whiskeysockets/baileys wa-sticker-formatter qrcode-terminal pino @hapi/boom
-```
+# Clone repositori & masuk ke folder termux
+git clone [https://github.com/USERNAME_KAMU/wa-bot.git](https://github.com/USERNAME_KAMU/wa-bot.git)
+cd wa-bot/termux
 
-### 3. Buat File Utama (`index.js`)
-Buat file `index.js` di dalam folder proyek, lalu masukkan kode integrasi Baileys dan `wa-sticker-formatter`.
+# Install modul Node.js
+npm install
 
-### 4. Jalankan Bot
-Eksekusi perintah berikut untuk memuat bot:
-```bash
+# Jalankan bot
 node index.js
 ```
+> **Catatan:** Masukkan nomor WhatsApp kamu dengan awalan `62` saat diminta di terminal, lalu masukkan Kode Verifikasi 8 digit yang muncul ke menu **WhatsApp -> Perangkat Tertaut -> Tautkan dengan nomor telepon saja**.
 
 ---
 
-## 📲 Cara Penggunaan Bot
+### 🖥️ 2. Versi Desktop (PC / Laptop)
 
-1. Setelah menjalankan `node index.js`, **QR Code** akan muncul di terminal CMD.
-2. Buka aplikasi **WhatsApp** di HP $\rightarrow$ **Perangkat Tertaut (Linked Devices)** $\rightarrow$ **Tautkan Perangkat**.
-3. Scan QR Code yang ada di terminal.
-4. Setelah status koneksi menjadi **`open`**, kirim foto di obrolan WA dengan *caption*:
-   ```text
-   .stiker
-   ```
-5. Bot akan memproses dan membalas gambar tersebut dalam bentuk stiker! 🎉
+Cocok untuk pengguna Windows, Linux, atau macOS.
+
+```bash
+# Clone repositori & masuk ke folder desktop
+git clone [https://github.com/USERNAME_KAMU/wa-bot.git](https://github.com/USERNAME_KAMU/wa-bot.git)
+cd wa-bot/desktop
+
+# Install modul Node.js
+npm install
+
+# Jalankan bot
+node index.js
+```
+> **Catatan:** Scan **QR Code** yang muncul di terminal menggunakan fitur **Perangkat Tertaut** di WhatsApp HP kamu.
 
 ---
 
-## 📂 Struktur Folder Proyek
+## 📂 Struktur Repositori
 
 ```text
 wa-bot/
-├── auth_info_baileys/  # Sesi login WA (Otomatis dibuat, JANGAN di-upload ke GitHub)
-├── node_modules/       # Modul dependensi Node.js
-├── index.js            # Kode logika utama bot
-├── package.json        # Manifest proyek & daftar library
-└── README.md           # Dokumentasi proyek
+├── desktop/             # Kode utama untuk versi PC/Laptop (QR Code)
+│   ├── index.js
+│   └── package.json
+├── termux/              # Kode utama untuk versi Android (Pairing Code + FFmpeg)
+│   ├── index.js
+│   └── package.json
+├── .gitignore           # Menjaga file sensitif/sesi agar tidak ter-upload
+└── README.md            # Dokumentasi proyek
 ```
 
 ---
 
-## 🔐 Catatan Keamanan
+## 🔐 Catatan Keamanan & Git
 
-> **PENTING:** Jangan pernah mengunggah folder `auth_info_baileys/` atau folder sesi login ke repositori publik. Folder tersebut berisi token akses akun WhatsApp kamu. Pastikan untuk memasukkan folder tersebut ke dalam `.gitignore`.
+> **PENTING:** Pastikan folder sesi (`auth_info_baileys/`) dan `node_modules/` dimasukkan ke dalam `.gitignore` agar token akses WhatsApp kamu tidak bocor ke publik.
 
 ---
 
 ## 👤 Pembuat
 
-* **Ifan** - [*Repository Author*](https://github.com/syaaifann)
+* **Ifan** - [*anonxb10*](https://github.com/USERNAME_KAMU)
